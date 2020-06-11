@@ -1,11 +1,11 @@
 import flask
 from flask_cors import CORS
 from flask import jsonify, render_template
-from blueprints.password_module import password_module
+from blueprints.register_module import register_module
 from blueprints.user_module import user_module
 
 app = flask.Flask(__name__)
-app.register_blueprint(password_module, url_prefix='/')
+app.register_blueprint(register_module, url_prefix='/')
 app.register_blueprint(user_module, url_prefix='/')
 
 app.config["DEBUG"] = True

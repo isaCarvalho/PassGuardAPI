@@ -1,19 +1,19 @@
-from models.password import Password
+from models.register import Register
 
-class PasswordController:
+class RegisterController:
 
     def list(self, id):
         if (id != 0):
-            return Password.list(id)
+            return Register.list(id)
         else:
-            return Password.list()
+            return Register.list()
 
     def save(self, passwordDescription, passwordContent):
         
         if (not isValid(passwordDescription, passwordContent)):
             return "Invalid"
 
-        password = Password(passwordDescription, passwordContent)
+        password = Register(passwordDescription, passwordContent)
         password.save()
 
         return "Success"
@@ -23,14 +23,14 @@ class PasswordController:
         if (not isValid(passwordDescription, passwordContent)):
             return "Invalid"        
 
-        password = Password(passwordDescription, passwordContent)
+        password = Register(passwordDescription, passwordContent)
         password.save(id)
 
         return "Success"
 
     def delete(self, id = 0):
         if (id != 0):
-            return Password.delete(id)
+            return Register.delete(id)
         else:
             return "Invalid"
 

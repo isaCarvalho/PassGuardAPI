@@ -1,6 +1,6 @@
 from dao.dataAccess import DataAccess
 
-class Password:
+class Register:
    
     passwordDescription = None
     passwordContent = None
