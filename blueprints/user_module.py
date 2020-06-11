@@ -18,7 +18,7 @@ def index():
 def save():
     data = request.json
 
-    name = data.get('name')
+    name = data.get('username')
     email = data.get('email')
     password = data.get('password')
 
@@ -29,7 +29,7 @@ def update():
     data = request.json
 
     id = data.get('id')
-    name = data.get('name')
+    name = data.get('username')
     email = data.get('email')
     password = data.get('password')
 

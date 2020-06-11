@@ -6,22 +6,24 @@ class User:
     email = None
     password = None
 
-    def __init__(name, email, password):
+    def __init__(self, name, email, password):
         self.name = name
         self.email = email
         self.password = password
 
-    def save(self, id = 0): # Lembrar de atualizar o id do usuario depois de salvar e se o id for diferente de 0, atualizar
+    def save(self, id = 0):
         try:
             if (id == 0):
-                DataAccess.executeStatement("INSERT INTO users (username, email, password) VALUES ('{}', '{}', '{}')"
+                DataAccess.executeStatement("INSERT INTO users (name, email, password) VALUES ('{}', '{}', '{}')"
                 .format(self.name, self.email, self.password))
             else:
-                DataAccess.executeStatement("UPDATE users SET username = '{}', password = '{}', email = '{}' WHERE id = {:d}"
+                DataAccess.executeStatement("UPDATE users SET name = '{}', password = '{}', email = '{}' WHERE id = {:d}"
                 .format(self.name, self.password, self.email, id))
             
+            return "success"
+
         except:
-            print("fail to save or update user")
+            return "fail to save or update user"
 
     @staticmethod
     def delete(id):

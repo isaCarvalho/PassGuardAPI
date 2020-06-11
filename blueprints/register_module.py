@@ -14,24 +14,36 @@ def index():
 
     return jsonify(register_controller.list(id))
 
+@register_module.route('/register/user', methods=["GET"])
+def getByUser():
+    data = request.json
+    id_user = 0
+    
+    if (data != None):
+        id_user = data.get('id_user')
+
+    return jsonify(register_controller.getRegisterByUser(id_user))
+
 @register_module.route('/register', methods=['POST'])
 def save():
     data = request.json
 
-    registerDescription = data.get('registerDescription')
-    registerContent = data.get('registerContent')
+    passwordDescription = data.get('passwordDescription')
+    passwordContent = data.get('passwordContent')
+    id_user = data.get('id_user')
 
-    return jsonify(register_controller.save(registerDescription, registerContent))
+    return jsonify(register_controller.save(passwordDescription, passwordContent, id_user))
 
 @register_module.route('/register', methods=['PUT'])
 def update():
     data = request.json
 
     id = data.get('id')
-    registerDescription = data.get('registerDescription')
-    registerContent = data.get('registerContent')
+    passwordDescription = data.get('passwordDescription')
+    passwordContent = data.get('passwordContent')
+    id_user = data.get('id_user')
 
-    return jsonify(register_controller.update(id, registerDescription, registerContent))
+    return jsonify(register_controller.update(passwordDescription, passwordContent, id_user, id))
 
 @register_module.route('/register', methods=['DELETE'])
 def delete():

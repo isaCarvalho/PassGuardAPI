@@ -8,37 +8,26 @@ class RegisterController:
         else:
             return Register.list()
 
-    def save(self, passwordDescription, passwordContent):
+    def save(self, passwordDescription, passwordContent, id_user):
         
-        if (not isValid(passwordDescription, passwordContent)):
-            return "Invalid"
+        password = Register(passwordDescription, passwordContent, id_user)
+        return password.save()
 
-        password = Register(passwordDescription, passwordContent)
-        password.save()
+    def update(self, passwordDescription, passwordContent, id_user, id = 0):       
 
-        return "Success"
+        password = Register(passwordDescription, passwordContent, id_user)
+        return password.save(id)
 
-    def update(self, id = 0, name = "", email = "", password = ""):
-
-        if (not isValid(passwordDescription, passwordContent)):
-            return "Invalid"        
-
-        password = Register(passwordDescription, passwordContent)
-        password.save(id)
-
-        return "Success"
+        return "success"
 
     def delete(self, id = 0):
         if (id != 0):
             return Register.delete(id)
         else:
-            return "Invalid"
+            return "invalid"
 
-    def isValid(self, passwordDescription, passwordContent):
-
-        if (passwordDescription.length > 255 or passwordContent < 8):
-            return False
+    def getRegisterByUser(self, id_user):
+        if (id_user == None or id_user == 0):
+            return "invalid"
         else:
-            return True
-
-        
+            return Register.getRegisterByUser(id_user)
