@@ -35,12 +35,9 @@ class User:
             return "fail"
 
     @staticmethod
-    def list(id = 0):
+    def queryUser(condition = True):
         try:
-            if (id == 0):
-                data = DataAccess.queryStatement("*", "users")
-            else:
-                data = DataAccess.queryStatement("*", "users", "id = {:d}".format(id))
+            data = DataAccess.queryStatement("*", "users", condition)
 
             array = []
             for i in range(0, len(data), 1):
@@ -57,3 +54,22 @@ class User:
 
         except:
             return "fail"
+
+    @staticmethod
+    def list(id = 0):
+        if (id == 0):
+            return User.queryUser()
+        else:
+            return User.queryUser("id = {:d}".format(id))
+
+    @staticmethod
+    def login(email, password):
+        
+        user = User.queryUser("email = '{}' AND password = '{}'".format(email, password))
+
+        if (user == "fail"):
+            return "invalid"
+        else:
+            return user[0]
+
+               

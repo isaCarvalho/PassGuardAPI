@@ -12,7 +12,7 @@ class UserController:
     def save(self, name, email, password):
 
         user = User(name, email, password)
-        return user.save()
+        return user.save()                             
 
     def update(self, id = 0, name = "", email = "", password = ""):    
 
@@ -24,3 +24,9 @@ class UserController:
             return User.delete(id)
         else:
             return "fail"
+
+    def authenticate(self, email, password):
+        if (email == None or password == None):
+            return "invalid"
+
+        return User.login(email, password)

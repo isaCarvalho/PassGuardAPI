@@ -3,10 +3,12 @@ from flask_cors import CORS
 from flask import jsonify, render_template
 from blueprints.register_module import register_module
 from blueprints.user_module import user_module
+from blueprints.login_module import login_module
 
 app = flask.Flask(__name__)
 app.register_blueprint(register_module, url_prefix='/')
 app.register_blueprint(user_module, url_prefix='/')
+app.register_blueprint(login_module, url_prefix='/')
 
 app.config["DEBUG"] = True
 
@@ -18,7 +20,7 @@ def index():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return jsonify('This page was not found'), 404
+    return render_template('error.html')
 
 if __name__ == '__main__':
     app.run()
