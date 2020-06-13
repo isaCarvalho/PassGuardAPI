@@ -1,4 +1,5 @@
 from models.register import Register
+import hashlib
 
 class RegisterController:
 
@@ -8,12 +9,19 @@ class RegisterController:
         else:
             return Register.list()
 
+    def encrypt(self, passwordDescription, passwordContent):
+        return hashlib.md5(passwordDescription), hashlib.md5(passwordContent)
+
     def save(self, passwordDescription, passwordContent, id_user):
         
+        passwordDescription, passwordContent = self.encrypt(passwordDescription, passwordContent)
+
         password = Register(passwordDescription, passwordContent, id_user)
         return password.save()
 
     def update(self, passwordDescription, passwordContent, id_user, id = 0):       
+
+        passwordDescription, passwordContent = self.encrypt(passwordDescription, passwordContent)
 
         password = Register(passwordDescription, passwordContent, id_user)
         return password.save(id)
