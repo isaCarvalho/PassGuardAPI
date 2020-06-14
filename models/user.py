@@ -1,4 +1,5 @@
 from dao.dataAccess import DataAccess
+from util.logger import Logger
 
 class User:
   
@@ -22,7 +23,9 @@ class User:
             
             return "success"
 
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail to save or update user"
 
     @staticmethod
@@ -31,7 +34,9 @@ class User:
             DataAccess.executeStatement("DELETE FROM users WHERE id = {:d}".format(id))
         
             return "success"
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail"
 
     @staticmethod
@@ -52,7 +57,9 @@ class User:
 
             return array
 
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail"
 
     @staticmethod

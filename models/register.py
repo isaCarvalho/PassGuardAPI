@@ -1,4 +1,5 @@
 from dao.dataAccess import DataAccess
+from util.logger import Logger
 
 class Register:
    
@@ -22,7 +23,9 @@ class Register:
 
             return "success"
 
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail to save or update password object"
 
     @staticmethod
@@ -31,7 +34,9 @@ class Register:
             DataAccess.executeStatement("DELETE FROM registers WHERE id = {:d}".format(id))
         
             return "success"
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail"
 
     @staticmethod
@@ -52,7 +57,9 @@ class Register:
 
             return array
 
-        except:
+        except Exception as error:
+
+            Logger.log(error)
             return "fail"
 
     @staticmethod

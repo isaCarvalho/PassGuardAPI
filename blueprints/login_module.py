@@ -9,11 +9,9 @@ def index():
     data = request.json
     email = None
     password = None
-    encrypt = None
 
     if (data != None):
         email = data.get('email')
         password = data.get('password')
-        encrypt = data.get('encrypt')
 
-    return jsonify(user_controller.authenticate(email, password, encrypt))
+    return jsonify(user_controller.authenticate(email, password))
