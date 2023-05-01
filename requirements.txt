@@ -1,6 +1,6 @@
-﻿click==7.1.2
+click==7.1.2
 configparser==5.0.0
-Flask==1.1.2
+Flask==2.3.2
 Flask-Cors==3.0.9
 Flask-Login==0.5.0
 Flask-SQLAlchemy==2.4.3
